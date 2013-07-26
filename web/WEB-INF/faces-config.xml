@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.1"
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd">
+    
+    <lifecycle>
+        <phase-listener>
+            tickets.listeners.LoginListener
+        </phase-listener>
+    </lifecycle>
+    <converter>
+        <converter-class>tickets.converters.GenderConverter</converter-class>
+        <converter-id>tickets.GenderConverter</converter-id>
+    </converter>
+     <converter>
+        <converter-class>tickets.converters.RolConverter</converter-class>
+        <converter-id>tickets.RolConverter</converter-id>
+    </converter>
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>usuarios</from-outcome>
+            <to-view-id>/usuarios/lista.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>usuariosForm</from-outcome>
+            <to-view-id>/usuarios/nuevo.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>main</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>estadosForm</from-outcome>
+            <to-view-id>/estados/nuevo.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>estados</from-outcome>
+            <to-view-id>/estados/lista.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>roles</from-outcome>
+            <to-view-id>/roles/lista.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>rolesForm</from-outcome>
+            <to-view-id>/roles/nuevo.xhtml</to-view-id>
+        </navigation-case>
+        
+         <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+        </navigation-case>
+        
+         <navigation-case>
+            <from-outcome>tecnico</from-outcome>
+            <to-view-id>/tecnico/index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>tecnicoList</from-outcome>
+            <to-view-id>/tecnico/asignar.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>tecnicoCerados</from-outcome>
+            <to-view-id>/tecnico/cerados.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>tecnicosForm</from-outcome>
+            <to-view-id>/tecnico/nuevo.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>basico</from-outcome>
+            <to-view-id>/basico/index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>basicosForm</from-outcome>
+            <to-view-id>/basico/nuevo.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>administrador</from-outcome>
+            <to-view-id>/admin/index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>adminsForm</from-outcome>
+            <to-view-id>/admin/nuevo.xhtml</to-view-id>
+        </navigation-case>
+        
+    </navigation-rule>
+
+</faces-config>

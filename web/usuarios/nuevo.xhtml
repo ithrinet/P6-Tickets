@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition template="/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:ace="http://www.icefaces.org/icefaces/components"
+                
+                xmlns:f="http://java.sun.com/jsf/core">
+    
+    <ui:define name="cuerpo" >
+        <h:form rendered="#{sessionScope.currentUser.rol.id == 1}">
+        <div class="box">
+                        <header>
+                            <div class="icons"><i class="icon-edit"></i></div>
+                            <h5>Form Usuario</h5>
+                            <!-- /.toolbar -->
+                        </header>
+                    <div id="div-1" class="accordion-body collapse in body">
+                        <h:panelGroup layout="block">
+
+                            <table>
+                                <tr>
+                                    <td>Usuario</td>
+                                    <td><h:inputText value="#{formUsuariosBean.usuario.usuario}" label="Usuario" required="true" requiredMessage="Es obligatorio introducir un nombre de usuario"/>
+                                        <h:message styleClass="alert alert-error" for="Usuario"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Contraseña</td>
+                                    <td>
+                                        <h:inputSecret value="#{formUsuariosBean.usuario.password}" id="pass" label="Contraseña" required="true" />
+                                        <h:message styleClass="alert alert-error" for="Contraseña"/>
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td>Rol</td>
+                                    <td><h:selectOneMenu value="#{formUsuariosBean.usuario.rol}" label="Rol" rendered="true">
+                                            <f:selectItems value="#{formUsuariosBean.roles}"/>
+                                            <f:converter converterId="tickets.RolConverter"/>
+                                        </h:selectOneMenu>
+                                        <h:message styleClass="alert alert-error" for="Rol"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Nombre</td>
+                                    <td><h:inputText value="#{formUsuariosBean.usuario.nombre}" label="Nombre" required="true"/>
+                                    <h:message styleClass="alert alert-error" for="Nombre"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Apellidos</td>
+                                    <td><h:inputText  value="#{formUsuariosBean.usuario.apellidos}" label="Apellidos"/>
+                                    <h:message styleClass="alert alert-error" for="Apellidos"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sexo</td>
+                                    <td>
+                                        <h:selectOneRadio value="#{formUsuariosBean.usuario.sexo}" label="Sexo">
+                                            <f:selectItems value="#{formUsuariosBean.opciones}"/>
+                                            <f:converter converterId="tickets.GenderConverter" />
+                                        </h:selectOneRadio>
+                                        <h:message styleClass="alert alert-error" for="Sexo"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Telefono</td>
+                                    <td><h:inputText value="#{formUsuariosBean.usuario.telefono}" label="Telefono">
+                                            <f:convertNumber integerOnly="true" minIntegerDigits="9" maxIntegerDigits="15" pattern="#"/>
+                                        </h:inputText>
+                                        <h:message styleClass="alert alert-error" for="Telefono"/>
+                                        
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Correo</td>
+                                    <td><h:inputText value="#{formUsuariosBean.usuario.correo}" label="Correo" rendered="true"/>
+                                        <h:message styleClass="alert alert-error" for="Correo" />
+                                    </td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                     <h:commandButton styleClass="btn btn-info" value="Guardar" action="#{formUsuariosBean.save}"/>
+                                    <h:commandButton  styleClass="btn btn-warning" value="Cancelar" action="#{formUsuariosBean.cancel}" immediate="true"/></td>
+                                </tr>
+                            </table>
+                        
+                </h:panelGroup>
+                </div>
+        </div>
+      </h:form>
+    </ui:define>
+</ui:composition>
+
+
+

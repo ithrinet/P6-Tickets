@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition template="/template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      >
+    
+    <ui:define name="cuerpo">
+        <div class="box">
+            <h:form rendered="#{formTecnicoBean.isVacio}">
+                <h:commandButton styleClass="btn btn-danger" rendered="#{!formTecnicoBean.isCerrado }" immediate="true" value="Cerrar ticket" action="#{formTecnicoBean.cerrar()}"/>
+            </h:form>
+            <h:form>
+            <h:commandButton styleClass="btn btn-primary" rendered="#{formTecnicoBean.isCerrado}" immediate="true" value="Volver" action="#{formTecnicoBean.cancel()}"/>
+                       
+            <header>
+                <div class="icons"><i class="icon-edit"></i></div>
+                <h5>Tickets Form</h5>
+                <!-- /.toolbar -->
+            </header>
+            <div id="div-1" class="accordion-body collapse in body">
+                <ice:panelGrid rendered="#{formTecnicoBean.isVacio}">
+                    <h:outputLabel value="Ticket Nº:">
+                        #{formTecnicoBean.ticket.id}
+                    </h:outputLabel>
+                
+                    <h:outputLabel for="estado" value="Estado:">
+                        #{formTecnicoBean.ticket.estado.nombre}
+                    </h:outputLabel>
+                </ice:panelGrid>
+            <ace:dataTable var="item" value="#{formTecnicoBean.ticket.mensajes}" rendered="#{formTecnicoBean.isVacio}">
+                <ace:column headerText="Asunto">
+                    #{item.asunto}
+                </ace:column>
+                <ace:column headerText="Detalles">
+                    #{item.cuerpo}
+                </ace:column>
+                <ace:column headerText="Fecha">
+                    <h:outputText value="#{item.mensaje}">
+                        <f:convertDateTime pattern="d/M/y"/>
+                    </h:outputText>
+                </ace:column>
+            </ace:dataTable>
+            
+            <ice:panelGroup rendered="#{!formTecnicoBean.isCerrado}">
+            <table class="table">
+                    <tr>
+                        <td>Asunto</td>
+                        <td>
+                            <h:inputText value="#{formTecnicoBean.mensaje.asunto}" required="true"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Detalles</td>
+                        <td><h:inputTextarea value="#{formTecnicoBean.mensaje.cuerpo}" /></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                        <h:commandButton styleClass="btn btn-warning" immediate="true" value="Cancelar" action="#{formTecnicoBean.cancel()}"/>
+                        <h:commandButton styleClass="btn btn-info"  value="Enviar" action="#{formTecnicoBean.save()}"/>
+                        </td>
+                    </tr>
+                </table>
+            </ice:panelGroup>
+            </div>
+        </h:form>
+            
+        </div>
+</ui:define>
+</ui:composition>
+

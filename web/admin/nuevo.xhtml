@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition template="/template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      >
+    
+    <ui:define name="cuerpo">
+        <div class="box">
+            <h:form rendered="#{formAdminBean.isVacio}">
+                <h:commandButton styleClass="btn btn-danger" rendered="#{!formAdminBean.isCerrado}" immediate="true" value="Cerrar ticket" action="#{formAdminBean.cerrar()}"/>
+            </h:form>
+            <h:form>
+            <h:commandButton styleClass="btn btn-primary" rendered="#{formAdminBean.isCerrado}" immediate="true" value="Volver" action="#{formAdminBean.cancel()}"/>
+            
+            
+            <header>
+                <div class="icons"><i class="icon-edit"></i></div>
+                <h5>Tickets Form</h5>
+                <!-- /.toolbar -->
+            </header>
+            <div id="div-1" class="accordion-body collapse in body">
+                
+                <ice:panelGrid rendered="#{formAdminBean.isVacio}">
+                    <h:outputLabel value="Ticket Nº:">
+                        #{formAdminBean.ticket.id}
+                    </h:outputLabel>
+                
+                    <h:outputLabel for="estado" value="Estado:">
+                        #{formAdminBean.ticket.estado.nombre}
+                    </h:outputLabel>
+                </ice:panelGrid>
+                
+            <ace:dataTable var="item" value="#{formAdminBean.ticket.mensajes}" rendered="#{formAdminBean.isVacio}">
+                <ace:column headerText="Asunto">
+                    #{item.asunto}
+                </ace:column>
+                <ace:column headerText="Detalles">
+                    #{item.cuerpo}
+                </ace:column>
+                <ace:column headerText="Fecha">
+                    <h:outputText value="#{item.mensaje}">
+                        <f:convertDateTime pattern="d/M/y"/>
+                    </h:outputText>
+                </ace:column>
+            </ace:dataTable>
+                
+            <ice:panelGroup rendered="#{!formAdminBean.isCerrado}">                        
+                <table class="table">
+                    <tr>
+                        <td>Asunto</td>
+                        <td>
+                            <h:inputText value="#{formAdminBean.mensaje.asunto}" required="true"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Detalles</td>
+                        <td><h:inputTextarea value="#{formAdminBean.mensaje.cuerpo}" /></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                        <h:commandButton styleClass="btn btn-warning" immediate="true" value="Cancelar" action="#{formAdminBean.cancel()}"/>
+                        <h:commandButton styleClass="btn btn-info" rendered="#{! formAdminBean.isCerrado}" value="Enviar" action="#{formAdminBean.save()}"/>
+                        </td>
+                    </tr>
+                </table>
+            </ice:panelGroup>
+            </div>
+        </h:form>
+            
+        </div>
+</ui:define>
+</ui:composition>
+

@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition template="/template.xhtml"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:define name="cuerpo">
+        <ice:form rendered="#{sessionScope.currentUser.rol.id == 1}">
+            
+            <div class="box"> 
+                <h:link styleClass="btn btn-primary" outcome="usuariosForm">Nuevo Usuario</h:link>
+                        <header>
+                            <h5>Lista Tickets</h5>                          
+                        </header> 
+                    <div id="div-1" class="accordion-body collapse in body">
+                        
+
+                        <ace:dataTable styleClass="table" id="carTable" binding="#{usuariosBean.dataTable}" value="#{usuariosBean.usuarios}" var="item"
+                                       paginator="true" paginatorPosition="bottom" rows="10">
+                            
+                            <ace:column headerText="Nº">
+                                #{item.id}
+                            </ace:column>
+                            <ace:column headerText="Usuario">
+                                #{item.rol.nombre}
+                            </ace:column>                            
+                            <ace:column headerText="Nombre Completo">
+                                #{item.nombre} #{item.apellidos} 
+                            </ace:column>
+                            <ace:column headerText="Email">
+                                #{item.correo}
+                            </ace:column>
+                            <ace:column headerText="Telefono">
+                                #{item.telefono}
+                            </ace:column>
+                            
+                            <ace:column headerText="Opciones" >
+                                <h:commandLink styleClass="btn btn-info" action="#{usuariosBean.editar()}" value="Editar"/>
+                                <h:commandLink styleClass="btn btn-danger" action="#{usuariosBean.eliminar()}" onclick="if (!confirm('Estas Segura de Elminar Este Usuario')) return false" value="Eliminar"/>
+                            </ace:column>
+                        </ace:dataTable>
+                     </div>
+        </div>
+    </ice:form>
+  </ui:define>
+</ui:composition>
+

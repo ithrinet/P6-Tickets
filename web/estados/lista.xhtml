@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition template="/template.xhtml"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:define name="cuerpo" rendered=" #{sessionScope.currentUser.rol.id == 1}">
+        <ice:form>
+            
+            <div class="box"> 
+                <h:link styleClass="btn btn-primary" outcome="estadosForm">Nuevo Usuario</h:link>
+                        <header>
+                            <h5>Lista Tickets</h5>                          
+                        </header> 
+                    <div id="div-1" class="accordion-body collapse in body">
+                        
+
+                        <ace:dataTable styleClass="table" id="carTable" binding="#{estadosBean.dataTable}" value="#{estadosBean.estados}" var="item"
+                                       paginator="true" paginatorPosition="bottom" rows="10">
+                            
+                            <ace:column headerText="Tipo">
+                                #{item.nombre}
+                            </ace:column>
+                            <ace:column headerText="Descripcion">
+                                #{item.descripcion}
+                            </ace:column>                            
+                            <ace:column headerText="Opciones" >
+                                <h:commandLink styleClass="btn btn-info edit" action="#{estadosBean.editar()}" value="Editar"/>
+                                <h:commandLink styleClass="btn btn-danger remove" onclick="if (!confirm('Estas Segura de Elminar Este Estado')) return false" action="#{estadosBean.eliminar()}" value="Eliminar"/>
+                            </ace:column>
+                        </ace:dataTable>
+                     </div>
+              </div>
+    </ice:form>
+    </ui:define>
+</ui:composition>
+
+
+

@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition template="/template.xhtml"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:icecore="http://www.icefaces.org/icefaces/core"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:define name="cuerpo" rendered="#{sessionScope.currentUser.rol.id == 2}">
+         <ice:form>
+            <div class="box"> 
+                        <h:commandLink styleClass="btn btn-primary" action="#{tecnicoBean.nuevo()}">Abrir un nuevo Ticket</h:commandLink>
+                        <header>
+                            <h5>Lista Tickets Cerrados</h5>
+                            <!-- /.toolbar -->
+                        </header> 
+                    <div id="div-1" class="accordion-body collapse in body">
+                        
+
+                        <ace:dataTable styleClass="table" id="carTable" binding="#{tecnicoBean.dataTable}" value="#{tecnicoBean.ticketsCerados}" var="var"
+                                       paginator="true" paginatorPosition="bottom" rows="10"
+                                       >
+                            <ace:column headerText="Nº" >
+                                <h:outputText value="#{var.id}"/>
+                            </ace:column>
+                            <ace:column headerText="Estado" >
+                                <h:outputText value="#{var.estado.nombre}"/>
+                            </ace:column>
+                            <ace:column headerText="Cliente" >
+                                <h:outputText value="#{var.cliente.nombre}"/>
+                            </ace:column>
+                            <ace:column headerText="Asunto" >
+                                <h:outputText value="#{var.mensajes[0].asunto}"/>
+                            </ace:column>                            
+                            <ace:column headerText="Asignado A" >
+                                <h:outputText value="#{var.tecnico.nombre}"/>
+                            </ace:column>
+                            <ace:column headerText="Opciones" >
+                                <h:commandButton styleClass="btn btn-info" rendered="#{!tecnicoBean.isCerrado}" action="#{tecnicoBean.editar()}" value="Editar"/>
+                                <h:commandButton styleClass="btn btn-primary" rendered="#{tecnicoBean.isCerrado}" action="#{tecnicoBean.editar()}" value="Ver"/>
+                            </ace:column>
+                        </ace:dataTable>
+                     </div>
+        </div>
+    </ice:form>
+  </ui:define>
+</ui:composition>
+

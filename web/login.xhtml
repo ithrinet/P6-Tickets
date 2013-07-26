@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition template="/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:ace="http://www.icefaces.org/icefaces/components"
+                xmlns:ice="http://www.icesoft.com/icefaces/component"
+                >
+
+    <ui:define name="header1">
+    </ui:define>
+    <ui:define name="cuerpo1">
+        <ice:form>
+       <div class="container">
+            <div class="row">
+                
+                <div class="span4 offset4">
+                    <h:messages styleClass="alert alert-error"/>
+                    <div class="signin">
+                        <div id="logo">
+                            <h:graphicImage library="img" name="logo.png"/>
+                        </div>
+                        <div class="tab-content">
+                            <div id="login" class="tab-pane active">
+                                <h:form>
+                                    <p class="muted tac">
+                                       Escribe su nombre de usuario y contraseña
+                                    </p>
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <div class="input-prepend">
+                                                <span class="add-on"><i class="icon-user"></i></span>
+                                                <ace:textEntry value="#{loginBean.usuario}" placeholder="Username"/>                                                
+                                            </div>
+                                        </div>
+                                        <div class="controls">
+                                            <div class="input-prepend">
+                                                <span class="add-on"><i class="icon-lock"></i></span>   
+                                                <h:inputSecret value="#{loginBean.password}" placeholder="Password"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h:commandButton action="#{loginBean.login()}" value="Sign in" styleClass="btn btn-inverse btn-block"/>
+                                </h:form>
+                            </div>
+                            <div id="forgot" class="tab-pane">
+                                <h:form>
+                                    <p class="muted tac">
+                                        Escribe Su E-Mail
+                                    </p>
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <div class="input-prepend">
+                                                <span class="add-on"><i class="icon-envelope"></i></span>
+                                                <h:inputText value="#{formUsuariosBean.usuario.correo}" placeholder="mail@domain.com" required="required" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-inverse btn-block" type="submit">Recoperar Password</button>
+                                </h:form>
+                            </div>
+                            <div id="signup" class="tab-pane">
+                                <h:form>
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <div class="input-prepend">
+                                                <span class="add-on"><i class="icon-user"></i></span>
+                                                <h:inputText value="#{formUsuariosBean.usuario.usuario}" id="nombre" placeholder="username" required="true" />
+                                           </div>
+                                        </div>
+                                        <div class="controls">
+                                            <div class="input-prepend">
+                                                <span class="add-on"><i class="icon-envelope"></i></span>
+                                                <h:inputText value="#{formUsuariosBean.usuario.correo}" placeholder="mail@domain.com"/>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="controls">
+                                            <div class="input-prepend">
+                                                <span class="add-on"><i class="icon-lock"></i></span>
+                                                <h:inputSecret value="#{formUsuariosBean.usuario.password}" id="pass" required="true" placeholder="password"/>                                             
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h:commandButton action="#{formUsuariosBean.rigestrar}" value="Register" styleClass="btn btn-inverse btn-block"/>
+                                </h:form>
+                            </div>
+                        </div>
+
+                        <ul class="inline">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div> 
+     </ice:form>
+     </ui:define>
+    <ui:define name="footer1">        
+    </ui:define>
+</ui:composition>
+

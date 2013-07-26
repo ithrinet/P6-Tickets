@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition template="/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:ace="http://www.icefaces.org/icefaces/components"
+                >
+    
+    <ui:define name="cuerpo" rendered="#{sessionScope.currentUser.rol.id == 1}">
+        <div class="box">
+                        <header>
+                            <div class="icons"><i class="icon-edit"></i></div>
+                            <h5>Roles Form</h5>
+                            <!-- /.toolbar -->
+                        </header>
+            <div id="div-1" class="accordion-body collapse in body">
+        <h:form>
+            <table class="table">
+                <tr>
+                    <td>Nombre</td>
+                    <td><h:inputText value="#{formRolBean.rol.nombre}"/></td>
+                </tr>
+                <tr>
+                    <td>Descripcion</td>
+                    <td><h:inputText value="#{formRolBean.rol.descripcion}"/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><h:commandButton styleClass="btn btn-info" action="#{formRolBean.save}" value="Guardar"/>
+                    <h:commandButton styleClass="btn btn-warning" immediate="true" action="#{formRolBean.cancel}" value="Cancel"/></td>
+                </tr>
+            </table>
+        </h:form>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

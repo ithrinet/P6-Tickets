@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>       
+        <title>Facelet Title</title>
+                
+        <h:outputStylesheet name="style.css" library="css" />
+        <h:outputStylesheet name="cssLayout.css" library="css" />
+        
+        <h:outputStylesheet name="bootstrap.min.css" library="css" />
+        <h:outputStylesheet name="login.css" library="css" />
+        
+        <h:outputStylesheet name="bootstrap.css" library="css" />
+        
+        <h:outputScript name="jquery-1.9.1.min.js" library="js"/>
+        <h:outputScript name="bootstrap.min.js" library="js"/>
+        <h:outputScript name="scripts.js" library="js" />
+        
+        
+        
+    </h:head>
+    <h:body>
+        <ui:insert name="header1">
+        <header id="top" class="top">
+            <ice:panelGroup>
+                <ice:form>
+                    <div class="container" >
+                        <div class="row-fluid">
+                            <ui:insert name="header">
+                                <div class="span12">
+                                <div class="navbar">
+                                        <div class="navbar-inner">
+                                                <div class="container-fluid">
+                                                         <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>
+                                                         <h:link outcome="main" styleClass="brand">Home</h:link>
+                                                         <h:form rendered="#{sessionScope.currentUser != null}">
+                                                        <div class="nav-collapse collapse navbar-responsive-collapse">
+                                                                <ul class="nav">
+                                                                    <li>
+                                                                         <h:link outcome="usuarios" rendered="#{sessionScope.currentUser.rol.id == 1}" >Usuarios</h:link>
+                                                                    </li>
+                                                                    <li>
+                                                                         <h:link outcome="estados" rendered="#{sessionScope.currentUser.rol.id == 1}" >Estados</h:link>
+                                                                    </li>
+                                                                    <li>
+                                                                        <h:link outcome="roles" rendered="#{sessionScope.currentUser.rol.id == 1}" >Roles</h:link>
+                                                                    </li>
+                                                                    <li class="dropdown pull-left">
+                                                                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Tickets<strong class="caret"></strong></a>
+                                                                           <ul class="dropdown-menu">
+                                                                                   <li>
+                                                                                        <h:link outcome="administrador" rendered="#{sessionScope.currentUser.rol.id == 1}" >Lista</h:link>
+                                                                                        <h:link outcome="tecnico" rendered="#{sessionScope.currentUser.rol.id == 2}" >Lista</h:link>
+                                                                                        <h:link outcome="basico" rendered="#{sessionScope.currentUser.rol.id == 3}" >Lista</h:link>
+                                                                                    </li>
+                                                                                   <li>
+                                                                                         <h:link outcome="tecnicoList" rendered="#{sessionScope.currentUser.rol.id == 2}" >Sin Asignar</h:link>
+                                                                                   </li>
+                                                                                   <li>
+                                                                                         <h:link outcome="tecnicoCerados" rendered="#{sessionScope.currentUser.rol.id == 2}" >Cerrados</h:link>
+                                                                                   </li>
+                                                                                   <li class="divider">
+                                                                                   </li>
+                                                                           </ul>
+                                                                   </li>
+                                                                </ul>
+
+                                                                <ul class="nav pull-right">
+                                                                    <li>
+                                                                        <a>#{sessionScope.currentUser.rol.nombre}</a>
+                                                                    </li>
+                                                                    <li class="dropdown pull-left">
+                                                                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Option<strong class="caret"></strong></a>
+                                                                           <ul class="dropdown-menu">
+                                                                                   <li>
+                                                                                        <h:link outcome="main">Perfil</h:link>
+                                                                                    </li>
+                                                                                   <li>
+                                                                                        <ice:commandLink action="#{index.logout}" >Logout</ice:commandLink>
+                                                                                   </li>
+                                                                                   <li class="divider">
+                                                                                   </li>
+                                                                           </ul>
+                                                                   </li>>
+                                                                     <li class="divider-vertical">
+                                                                     </li>
+                                                                   
+                                                                </ul>
+                                                           
+                                                        </div>
+                                                 </h:form>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </ui:insert>
+                        </div>
+                    </div>
+                </ice:form>
+        </ice:panelGroup>
+        </header>
+        </ui:insert>
+        <ui:insert name="cuerpo1">
+        <section id="container" >
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <h:messages styleClass="alert alert-error"/>
+                        <div class="center_content">
+                            
+                            <ui:insert name="cuerpo">
+                                Cuerpo del template
+                            </ui:insert>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </ui:insert>
+        <ui:insert name="footer1">
+        <footer id="footer">		
+            <div class="container" >
+                <div class="row-fluid">
+                    <ui:insert name="footer">
+                        <div class="span12">
+                            <p>Copyright 2013 AZOUZZ</p>
+                        </div>
+                     </ui:insert>   
+                </div>
+            </div>
+        </footer>
+     </ui:insert>
+        
+        
+    </h:body>
+</html>
+

@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition template="/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:ace="http://www.icefaces.org/icefaces/components"
+                
+                xmlns:f="http://java.sun.com/jsf/core">
+    
+        <ui:define name="cuerpo">              
+            <div class="box">
+                <header>
+                    <div class="icons"><i class="icon-edit"></i></div>
+                    <h5>Bienvinido #{sessionScope.currentUser.usuario}</h5>
+                </header>
+                <div id="div-1" class="accordion-body collapse in body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Nombre Completo :</th>
+                                <td>#{sessionScope.currentUser.nombre} #{sessionScope.currentUser.apellidos}</td>
+                            </tr>
+                            <tr>
+                                <th>Emial :</th>
+                                <td>#{sessionScope.currentUser.correo}</td>
+                            </tr>
+                            <tr>
+                                <th>Telefono :</th>
+                                <td>#{sessionScope.currentUser.telefono}</td>
+                            </tr>
+                            <tr>
+                                <th>Rol :</th>
+                                <td>#{sessionScope.currentUser.rol.nombre}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </ui:define>
+</ui:composition>
+

@@ -1,0 +1,16 @@
+En la Aplicacion hay TRES Niveles?
+
+para la mejor parueba aqui estan los usuarios y contrasenas.
+
+
+--Administrador
+ Usuario: admin
+ Password: admin
+
+--Tecnico
+ Usuario: tecnico
+ Password: tecnico
+ 
+--Basico
+ Usuario: user
+ Password: user
